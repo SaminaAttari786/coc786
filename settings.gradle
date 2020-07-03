@@ -1,0 +1,8 @@
+include ':Batch6'
+include ':Batch5'
+include ':Batch4'
+include ':Batch3'
+include ':Batch2'
+include ':Batch1'
+include ':app'
+rootProject.name = "FirstYear"
