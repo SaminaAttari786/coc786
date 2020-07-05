@@ -1,20 +1,14 @@
 package com.example.batch1;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,11 +35,9 @@ import com.google.firebase.storage.UploadTask;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.os.Bundle;
-
-public  class grade extends AppCompatActivity implements View.OnClickListener {
+public class grade extends AppCompatActivity implements View.OnClickListener {
     final static int PICK_PDF_CODE = 2342;
-    TextView textViewStatus6;
+    TextView textViewStatus;
     EditText edit;
     Button button41;
     ProgressBar progressBar;
@@ -61,12 +53,12 @@ public  class grade extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grade);
         storageReference = FirebaseStorage.getInstance().getReference();
-        databaseReference= FirebaseDatabase.getInstance().getReference();
-        textViewStatus6=(TextView)findViewById(R.id.textViewStatus6);
-        edit = (EditText)findViewById(R.id.edit);
-        progressBar = (ProgressBar)findViewById(R.id.progressbar);
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        textViewStatus = (TextView) findViewById(R.id.textViewStatus123);
+        edit = (EditText) findViewById(R.id.edit);
+        progressBar = (ProgressBar) findViewById(R.id.progressbar);
         findViewById(R.id.button41).setOnClickListener(this);
-        listView = (ListView)findViewById(R.id.listView);
+        listView = (ListView) findViewById(R.id.listView123);
         uploadList = new ArrayList<>();
         viewAllFiles();
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -79,21 +71,22 @@ public  class grade extends AppCompatActivity implements View.OnClickListener {
             }
         });
     }
+
     private void viewAllFiles() {
-        databaseReference = FirebaseDatabase.getInstance().getReference("uploads");
+        databaseReference = FirebaseDatabase.getInstance().getReference("uploads2");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot postSnapshot :dataSnapshot.getChildren() ) {
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Upload upload = postSnapshot.getValue(Upload.class);
                     uploadList.add(upload);
 
                 }
                 String[] uploads = new String[uploadList.size()];
-                for(int i=0;i<uploads.length;i++){
-                    uploads [i] = uploadList.get(i).getName();
+                for (int i = 0; i < uploads.length; i++) {
+                    uploads[i] = uploadList.get(i).getName();
                 }
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,uploads);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, uploads);
                 listView.setAdapter(adapter);
             }
 
@@ -103,34 +96,37 @@ public  class grade extends AppCompatActivity implements View.OnClickListener {
             }
         });
     }
-    private void getPDF(){
+
+    private void getPDF() {
 
         Intent intent = new Intent();
         intent.setType("application/pdf");
 
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent,"Select File"),PICK_PDF_CODE);
-    }  @Override
+        startActivityForResult(Intent.createChooser(intent, "Select File"), PICK_PDF_CODE);
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == PICK_PDF_CODE && resultCode == RESULT_OK && data!=null && data.getData()!=null){
-            if(data.getData()!=null){
+        if (requestCode == PICK_PDF_CODE && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            if (data.getData() != null) {
                 uploadFile(data.getData());
-            }else{
-                Toast.makeText(this,"No file choosen",Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "No file choosen", Toast.LENGTH_SHORT).show();
             }
         }
     }
     private void uploadFile(Uri data){
         progressBar.setVisibility(View.VISIBLE);
         storageReference = firebaseStorage.getInstance().getReference();
-        StorageReference ref = storageReference.child(Constants1.STORAGE_PATH_UPLOADS + System.currentTimeMillis() + ".pdf");
+        StorageReference ref = storageReference.child(Constants.STORAGE_PATH_UPLOADS + System.currentTimeMillis() + ".pdf");
         ref.putFile(data).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @SuppressWarnings("VisibleForTests")
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 progressBar.setVisibility(View.GONE);
-                textViewStatus6.setText("File Uploaded Successfully");
+                textViewStatus.setText("File Uploaded Successfully");
                 Task<Uri> uri = taskSnapshot.getStorage().getDownloadUrl();
                 while(!uri.isComplete());
                 Uri url = uri.getResult();
@@ -147,7 +143,7 @@ public  class grade extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
                 double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-                textViewStatus6.setText((int) progress + "%Uploading...");
+                textViewStatus.setText((int) progress + "%Uploading...");
 
             }
         });
@@ -160,9 +156,3 @@ public  class grade extends AppCompatActivity implements View.OnClickListener {
     }
 
 }
-
-
-
-
-
-

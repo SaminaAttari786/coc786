@@ -29,6 +29,10 @@
         <activity android:name=".syllabus6" />
         <activity android:name=".Upload6" />
         <activity android:name=".Constants6" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

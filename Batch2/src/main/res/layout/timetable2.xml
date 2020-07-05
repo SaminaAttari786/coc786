@@ -14,7 +14,7 @@
         android:layout_marginTop="523dp"
         android:layout_marginEnd="125dp"
         android:layout_marginBottom="160dp"
-        android:text="Download Button"
+        android:text="@string/download_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

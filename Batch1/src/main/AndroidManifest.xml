@@ -16,7 +16,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewUploadsActivity"></activity>
         <activity android:name=".grade" />
         <activity android:name=".Batch1">
             <intent-filter>
@@ -28,7 +27,11 @@
         <activity android:name=".timetable" />
         <activity android:name=".syllabus" />
         <activity android:name=".Upload" />
-        <activity android:name=".Constants1" />
+        <activity android:name=".Constants" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

@@ -36,14 +36,14 @@ public class syllabus4 extends Activity {
     public void download()
     {
         storageReference=firebaseStorage.getInstance().getReference();
-        ref=storageReference.child("syllabus5.pdf");
+        ref=storageReference.child("syllabus.pdf");
         ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
 
 
             @Override
             public void onSuccess(Uri uri) {
                 String url = uri.toString();
-                downloadFile(syllabus4.this,"syllabus5.pdf", ".pdf", (String) DIRECTORY_DOWNLOADS ,  url );
+                downloadFile(syllabus4.this,"syllabus.pdf", ".pdf", (String) DIRECTORY_DOWNLOADS ,  url );
 
             }
         }).addOnFailureListener(new OnFailureListener() {

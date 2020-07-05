@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".grade"
-    tools:ignore="ContentDescription">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".grade"
+        tools:ignore="ContentDescription">
 
     <EditText
         android:id="@+id/edit"
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_marginTop="30dp"
-        android:hint="Enter a name for your file"
+        android:hint="@string/enter_a_name_for_your_file"
         android:importantForAutofill="no"
         android:inputType="text" />
 
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/edit"
         android:background="#00bcd4"
-        android:text="Upload"
+        android:text="@string/upload"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,20 +41,20 @@
 
     </LinearLayout>
     <TextView
-        android:id="@+id/textViewStatus6"
+        android:id="@+id/textViewStatus123"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="No file selected"
+        android:text="@string/no_file_selected"
         android:gravity="center_horizontal"
         android:layout_below="@id/button41"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
 
     <ListView
-        android:id="@+id/listView"
+        android:id="@+id/listView123"
         style="@android:style/Widget.DeviceDefault.Light.ListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textViewStatus6"
+        android:layout_below="@id/textViewStatus123"
         android:layout_marginTop="1dp"
         android:fastScrollAlwaysVisible="true"
         android:fastScrollEnabled="true"
